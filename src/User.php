@@ -33,10 +33,8 @@ class User
     // 老爷检测
     public static function isMaster(): bool
     {
-        $payload = [
-            'ts' => Live::getMillisecond(),
-        ];
-        $raw = Curl::get('https://api.live.bilibili.com/User/getUserInfo', Sign::api($payload));
+        $payload = [];
+        $raw = Curl::get('https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info', Sign::api($payload));
         $de_raw = json_decode($raw, true);
         if ($de_raw['msg'] == 'ok') {
             if ($de_raw['data']['vip'] || $de_raw['data']['svip']) {
@@ -49,10 +47,8 @@ class User
     // 用户名写入
     public static function userInfo(): bool
     {
-        $payload = [
-            'ts' => Live::getMillisecond(),
-        ];
-        $raw = Curl::get('https://api.live.bilibili.com/User/getUserInfo', Sign::api($payload));
+        $payload = [];
+        $raw = Curl::get('https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info', Sign::api($payload));
         $de_raw = json_decode($raw, true);
 
         if (getenv('APP_UNAME') != "") {

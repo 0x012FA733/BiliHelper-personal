@@ -65,7 +65,7 @@ class Task
         } else {
             Log::info('签到成功');
             // 推送签到信息
-            Notice::run('todaySign', $data['msg']);
+            Notice::run('todaySign', $data['data']['text']);
         }
     }
 
@@ -83,8 +83,11 @@ class Task
             return;
         }
 
+        $user_info = User::parseCookies();
         $payload = [
             'task_id' => 'double_watch_task',
+            'csrf_token' => $user_info['token'],
+            'csrf' => $user_info['token']
         ];
         $data = Curl::post('https://api.live.bilibili.com/activity/v1/task/receive_award', Sign::api($payload));
         $data = json_decode($data, true);

@@ -37,7 +37,7 @@ class UnifyRaffle extends BaseRaffle
         $de_raw = json_decode($raw, true);
 
         // 计数 && 跳出
-        $total = count($de_raw['data']['list']);
+        $total = count($de_raw['data']['list']??[]);
         if (!$total) {
             return false;
         }
@@ -131,17 +131,19 @@ class UnifyRaffle extends BaseRaffle
     {
         $user_info = User::parseCookies();
         $payload = [
-            'raffleId' => $data['raffle_id'],
+            'id' => $data['raffle_id'],
             'roomid' => $data['room_id'],
             'type' => $data['type'],
             'csrf_token' => $user_info['token'],
             'csrf' => $user_info['token'],
             'visit_id' => null,
         ];
-        // V3接口 暂做保留处理
+        // V3接口(保留)
         // $url = 'https://api.live.bilibili.com/gift/v3/smalltv/join';
-        // $url = 'https://api.live.bilibili.com/xlive/lottery-interface/v5/smalltv/Join';
-        $url = 'https://api.live.bilibili.com/gift/v4/smalltv/getAward';
+        // V4接口(保留)
+        // $url = 'https://api.live.bilibili.com/gift/v4/smalltv/getAward';
+        // V5接口
+        $url = 'https://api.live.bilibili.com/xlive/lottery-interface/v5/smalltv/join';
         $raw = Curl::post($url, Sign::api($payload));
         $de_raw = json_decode($raw, true);
         if (isset($de_raw['code']) && $de_raw['code']) {

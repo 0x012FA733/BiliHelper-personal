@@ -22,7 +22,7 @@ class GiftSend
         Log::info('正在生成直播间信息...');
 
         $payload = [];
-        $data = Curl::get('https://account.bilibili.com/api/myinfo/v2', Sign::api($payload));
+        $data = Curl::get('https://api.live.bilibili.com/xlive/web-ucenter/user/get_user_info', Sign::api($payload));
         $data = json_decode($data, true);
 
         if (isset($data['code']) && $data['code']) {
@@ -32,12 +32,12 @@ class GiftSend
             return;
         }
 
-        self::$uid = $data['mid'];
+        self::$uid = $data['data']['uid'];
 
         $payload = [
             'id' => getenv('ROOM_ID'),
         ];
-        $data = Curl::get('https://api.live.bilibili.com/room/v1/Room/get_info', Sign::api($payload));
+        $data = Curl::get('https://api.live.bilibili.com/room/v1/Room/room_init', Sign::api($payload));
         $data = json_decode($data, true);
 
         if (isset($data['code']) && $data['code']) {

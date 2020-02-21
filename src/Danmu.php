@@ -45,9 +45,9 @@ class Danmu
          */
         $punctuations = ['，', ',', '。', '!', '.', ';', '——'];
         $apis = [
+            'https://v1.hitokoto.cn/?encode=text',
             'https://api.lwl12.com/hitokoto/v1?encode=realjso',
             'https://api.ly522.com/yan.php?format=text',
-            'https://v1.hitokoto.cn/?encode=text',
             'https://api.jysafe.cn/yy/',
             'https://m.mom1.cn/api/yan/api.php',
             'https://api.ooopn.com/yan/api.php?type=text',
