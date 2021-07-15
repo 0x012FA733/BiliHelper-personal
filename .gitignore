@@ -37,3 +37,8 @@ task/*
 # ignore TODO file in root directory,not subdir/TODO
 /TODO
 /Todo
+
+# Running related
+*.ini
+*.bat
+*.cmd

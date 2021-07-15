@@ -103,6 +103,8 @@ class DailyTask
         $url = 'https://api.live.bilibili.com/activity/v1/task/receive_award';
         $payload = [
             'task_id' => 'double_watch_task',
+            'csrf_token' => getCsrf(),
+            'csrf' => getCsrf()
         ];
         $data = Curl::post('app', $url, Sign::common($payload));
         $data = json_decode($data, true);

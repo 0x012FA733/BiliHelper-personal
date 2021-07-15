@@ -70,7 +70,7 @@ class PkRaffle extends BaseRaffle
      */
     protected static function createLottery(array $raffles): array
     {
-        $url = 'https://api.live.bilibili.com/xlive/lottery-interface/v1/pk/join';
+        $url = 'https://api.live.bilibili.com/xlive/lottery-interface/v2/pk/join';
         $tasks = [];
         foreach ($raffles as $raffle) {
             $payload = [

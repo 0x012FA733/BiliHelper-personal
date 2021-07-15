@@ -230,6 +230,9 @@ class Live
         $url = 'https://api.live.bilibili.com/room/v1/Room/room_entry_action';
         $payload = [
             'room_id' => $room_id,
+            'csrf_token' => getCsrf(),
+            'csrf' => getCsrf(),
+            'visit_id' => null
         ];
         // Log::info('进入直播间[' . $room_id . ']抽奖!');
         Curl::post('app', $url, Sign::common($payload));

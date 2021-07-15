@@ -136,8 +136,8 @@ class StormRaffle extends BaseRaffle
                     break;
                 }
                 if (isset($de_raw['data']) && empty($de_raw['data'])) {
-                    Log::debug(self::formatInfo($raffle['raffle_id'], $num, '节奏风暴在小黑屋'));
-                    self::pauseLock();
+                    Log::notice(self::formatInfo($raffle['raffle_id'], $num, '节奏风暴可能在小黑屋'));
+                    // self::pauseLock();
                     break;
                 }
                 if ($de_raw['msg'] == '你错过了奖励，下次要更快一点哦~') {
