@@ -43,3 +43,7 @@ log/*
 /TODO
 /Todo
 
+# Running related
+*.ini
+*.bat
+*.cmd
